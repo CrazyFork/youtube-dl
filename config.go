@@ -112,8 +112,8 @@ func (cfg *Config) findVideoId() (videoId string, err error) {
 	if strings.Contains(videoId, "youtu") || strings.ContainsAny(videoId, "\"?&/<%=") {
 		log("Provided video id seems to be an url, trying to detect")
 		re_list := []*regexp.Regexp{
-			regexp.MustCompile(`(?:v|embed|watch\?v)(?:=|/)([^"&?/=%]{11})`),
-			regexp.MustCompile(`(?:=|/)([^"&?/=%]{11})`),
+			regexp.MustCompile(`(?:v|embed|watch\?v)(?:=|/)([^"&?/=%]{11})`), // :note, ? match but not capture
+			regexp.MustCompile(`(?:=|/)([^"&?/=%]{11})`), //todo:
 			regexp.MustCompile(`([^"&?/=%]{11})`),
 		}
 		for _, re := range re_list {

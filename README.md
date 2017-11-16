@@ -1,3 +1,20 @@
+##
+
+
+```golang
+// 这是 main.go 中的核心代码, 这也是这个库的核心逻辑
+  videoId, err := cfg.findVideoId()           // 获得videoid
+  response, err := getVideoInfo(videoId)      // 通过 videoid 请求youtube的http api获取video信息
+  streams, err := decodeVideoInfo(response)    // 将 response 信息 []bytes 转换成库自己定义的stream 对象
+  stream, err := cfg.selectStream(streams)     // 根据某些策略选取合适的流节点, 返回唯一的stream
+  out, err := getWriter(cfg, stream)           // 通过stream的url信息调用go http.Get 来下载节点信息。
+  err = stream.download(out)
+```
+
+
+
+
+
 youtube-dl
 =================
 
